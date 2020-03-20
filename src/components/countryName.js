@@ -20,13 +20,13 @@ class CountryName extends Component {
             <div style={this.moviestyle()}>
                 <Link to="/country">
                     <img src={this.props.data.flag} width="200px" />
-                    <div style={{ padding: '20px' }}>
-                        <p>{this.props.data.name}</p>
-                        <p>Population: {this.props.data.population}</p>
-                        <p>Region: {this.props.data.region}</p>
-                        <p>Capital: {this.props.data.capital}</p>
-                    </div>
                 </Link>
+                <div style={{ padding: '20px' }}>
+                    <p>{this.props.data.name}</p>
+                    <p>Population: {this.props.data.population}</p>
+                    <p>Region: {this.props.data.region}</p>
+                    <p>Capital: {this.props.data.capital}</p>
+                </div>
             </div>
         );
     }

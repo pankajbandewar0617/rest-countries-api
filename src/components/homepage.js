@@ -38,6 +38,22 @@ class Homepage extends Component {
         }
     }
 
+    select = (e) => {
+        const region = e.target.value;
+        console.log("select", region)
+        this.getDataByRegion(region)
+    }
+
+    getDataByRegion = (region) => {
+        console.log(region)
+        fetch(`https://restcountries.eu/rest/v2/region/${region}`, {
+            method: 'GET'
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+        }).then(data => this.setState({ countriesData: data }))
+    }
 
 
     render() {
@@ -45,13 +61,13 @@ class Homepage extends Component {
             <div>
                 <div style={{ flex: 1, justifyContent: "space-between" }}>
                     <input placeholder=" &#128269; Search for a country..." />
-                    <select>
+                    <select onChange={(e) => this.select(e)}>
                         <option value="">Filter by Region</option>
-                        <option value="Action">Africa</option>
-                        <option value="Adventure">Americas</option>
-                        <option value="Animation">Asia</option>
-                        <option value="Biography">Europe</option>
-                        <option value="Comedy">Oceania</option>
+                        <option value="africa">Africa</option>
+                        <option value="americas">Americas</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="oceania">Oceania</option>
                     </select>
                 </div>
                 <div style={this.name()}>
