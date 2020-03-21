@@ -7,7 +7,7 @@ class CountryName extends Component {
     moviestyle = () => {
         return {
             border: "4px solid",
-            width: "200px",
+            width: "auto",
             margin: "20px",
             backgroundColor: "rgb(58, 57, 57)",
             color: "white",
@@ -25,7 +25,7 @@ class CountryName extends Component {
         return (
             <div style={this.moviestyle()} onClick={this.name}>
                 {/* <Link to="/country"> */}
-                <img src={this.props.data.flag} width="200px" height="100px" alt="flag missng" />
+                <img src={this.props.data.flag} width="200px" height="100px" alt="flag missing" />
                 {/* </Link> */}
                 <div style={{ padding: '20px' }}>
                     <p>{this.props.data.name}</p>

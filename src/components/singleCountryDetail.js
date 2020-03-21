@@ -8,6 +8,12 @@ class SingleCountry extends Component {
             justifyContent: "space-around",
         }
     }
+
+
+    ckk = (country) => {
+        console.log("cccc", country)
+        this.props.switchCountry(country)
+    }
     render() {
         return (
             <div>
@@ -29,8 +35,7 @@ class SingleCountry extends Component {
                         )}</p>
                         <p> Sub Region: {this.props.data.subregion}</p>
                         <p> Capital: {this.props.data.capital}</p>
-                        {/* <p>Border Countries: {this.props.data.borders.map((country, index) => (<button>{country}</button> */}
-                        {/* ))}</p> */}
+                        <p>Border Countries: {this.props.data.borders.map(country => (<button onClick={() => this.ckk(country)}>{country}</button>))}</p>
                     </div>
                 </div>
             </div >

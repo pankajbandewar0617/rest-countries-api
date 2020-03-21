@@ -6,6 +6,8 @@ class Homepage extends Component {
 
     state = {
         countriesData: [],
+        filterCountriesData: [],
+        singleCountryData: [],
     }
 
     componentDidMount() {
@@ -20,7 +22,11 @@ class Homepage extends Component {
             if (res.ok) {
                 return res.json();
             }
-        }).then(data => this.setState({ countriesData: data, homepageShow: true }))
+        }).then(data => this.setState({
+            countriesData: data,
+            filterCountriesData: data,
+            homepageShow: true
+        }))
     }
 
     homepageStyle = () => {
@@ -35,8 +41,8 @@ class Homepage extends Component {
         return {
             display: "flex",
             flexWrap: "wrap",
-            // justifyContent: "space-around",
-            // margin: "20px"
+            justifyContent: "space-around",
+            margin: "20px"
         }
     }
 
@@ -62,39 +68,66 @@ class Homepage extends Component {
         const filterData = this.state.countriesData.filter(data => data.name === name);
         // console.log(filterData)
         this.setState({
-            countriesData: filterData,
+            singleCountryData: filterData,
             homepageShow: false
         })
+    }
+
+    nextCountry = (name) => {
+        console.log("code", name);
+        const filterData = this.state.countriesData.filter(data => data.alpha3Code === name);
+        this.setState({
+            singleCountryData: filterData,
+            homepageShow: false
+        })
+    }
+
+    filter = (e) => {
+        const countryName = e.target.value;
+        if (countryName.length > 0) {
+            console.log(countryName);
+            const filterCountry = this.state.countriesData.filter(data =>
+                data.name.toLowerCase().includes(countryName.toLowerCase()))
+            this.setState({
+                filterCountriesData: filterCountry
+            })
+        } else {
+            this.getAllData()
+        }
     }
 
     render() {
         return (
             <div style={{ padding: "20px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <input placeholder=" &#128269; Search for a country..." />
-                    <select onChange={(e) => this.select(e)}>
-                        <option value="">Filter by Region</option>
-                        <option value="africa">Africa</option>
-                        <option value="americas">Americas</option>
-                        <option value="asia">Asia</option>
-                        <option value="europe">Europe</option>
-                        <option value="oceania">Oceania</option>
-                    </select>
-                </div>
-                {this.state.homepageShow ? (<div style={this.name()}>
-                    {this.state.countriesData.map((data, index) =>
-                        <CountryName
-                            data={data}
-                            key={index}
-                            country={this.singleCountry} />
-                    )}
-                </div>)
+                {this.state.homepageShow ?
+                    (<div>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                            <input placeholder=" &#128269; Search for a country..." onChange={(e) => this.filter(e)} />
+                            <select onChange={(e) => this.select(e)}>
+                                <option value="">Filter by Region</option>
+                                <option value="africa">Africa</option>
+                                <option value="americas">Americas</option>
+                                <option value="asia">Asia</option>
+                                <option value="europe">Europe</option>
+                                <option value="oceania">Oceania</option>
+                            </select>
+                        </div>
+                        <div style={this.name()}>
+                            {this.state.filterCountriesData.map((data, index) =>
+                                <CountryName
+                                    data={data}
+                                    key={index}
+                                    country={this.singleCountry} />
+                            )}
+                        </div>
+                    </div>)
                     :
                     (<div>
-                        {this.state.countriesData.map(data =>
+                        {this.state.singleCountryData.map(data =>
                             <SingleCountry
                                 data={data}
-                                detail={this.getAllData} />
+                                detail={this.getAllData}
+                                switchCountry={this.nextCountry} />
                         )
                         }
                     </div>)}
