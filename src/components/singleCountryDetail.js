@@ -5,24 +5,35 @@ class SingleCountry extends Component {
     countryStyle = () => {
         return {
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
         }
     }
     render() {
         return (
             <div>
-                <Link to="/">
-                    <button>&#x2190;  Back</button>
-                </Link>
+                {/* <Link to="/"> */}
+                <button onClick={this.props.detail}>&#x2190;  Back</button>
+                {/* </Link> */}
                 <div style={this.countryStyle()}>
-                    <div>country flag</div>
+                    {console.log(this.props.data)}
+                    <img src={this.props.data.flag} width="200px" height="120px" alt="flag missing" />
                     <div>
-                        <div>country name</div>
-                        <div>country detail</div>
-                        <div>border countries</div>
+                        <h3>{this.props.data.name}</h3>
+                        <p>Native Name : {this.props.data.nativeName}</p>
+                        <p> Top Level Domain: {this.props.data.topLevelDomain}</p>
+                        <p> Population: {this.props.data.population}</p>
+                        <p> Currencies: {this.props.data.currencies.map(name => (<p>{name.name}</p>)
+                        )}</p>
+                        <p> Region: {this.props.data.region}</p>
+                        <p> Languages: {this.props.data.languages.map(name => (<p>{name.name}</p>)
+                        )}</p>
+                        <p> Sub Region: {this.props.data.subregion}</p>
+                        <p> Capital: {this.props.data.capital}</p>
+                        {/* <p>Border Countries: {this.props.data.borders.map((country, index) => (<button>{country}</button> */}
+                        {/* ))}</p> */}
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
