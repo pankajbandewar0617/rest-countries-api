@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class CountryName extends Component {
     state = {}
 
     moviestyle = () => {
         return {
-            border: "4px solid",
-            width: "auto",
-            margin: "20px",
-            backgroundColor: "rgb(58, 57, 57)",
-            color: "white",
+            // border: "4px solid blue",
+            // borderRadius: "2px",
+            width: "200px",
+            margin: "30px",
+            backgroundColor: "hsl(209, 23%, 22%)",
+            color: "hsl(0, 0%, 100%)",
             fontSize: "14px",
-            lineHeight: "16px",
         }
     }
 
@@ -24,14 +23,14 @@ class CountryName extends Component {
     render() {
         return (
             <div style={this.moviestyle()} onClick={this.name}>
-                {/* <Link to="/country"> */}
-                <img src={this.props.data.flag} width="200px" height="100px" alt="flag missing" />
-                {/* </Link> */}
-                <div style={{ padding: '20px' }}>
-                    <p>{this.props.data.name}</p>
-                    <p>Population: {this.props.data.population}</p>
-                    <p>Region: {this.props.data.region}</p>
-                    <p>Capital: {this.props.data.capital}</p>
+                <img style={{ objectFit: "cover" }} src={this.props.data.flag} width="200px" height="100px" alt="flag missing" />
+                <div style={{ margin: "16px 16px 30px 16px" }}>
+                    <div style={{ fontWeight: "bold" }}>{this.props.data.name}</div>
+                    <div style={{ lineHeight: "8px", fontSize: "10px" }}>
+                        <p>Population: {this.props.data.population}</p>
+                        <p>Region: {this.props.data.region}</p>
+                        <p>Capital: {this.props.data.capital}</p>
+                    </div>
                 </div>
             </div>
         );

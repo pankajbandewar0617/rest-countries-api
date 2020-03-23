@@ -5,7 +5,7 @@ class SingleCountry extends Component {
     countryStyle = () => {
         return {
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
         }
     }
 
@@ -17,12 +17,20 @@ class SingleCountry extends Component {
     render() {
         return (
             <div>
-                {/* <Link to="/"> */}
-                <button onClick={this.props.detail}>&#x2190;  Back</button>
-                {/* </Link> */}
+                {/* <div> */}
+                <button onClick={this.props.detail}
+                    style={{
+                        backgroundColor: "hsl(209, 23%, 22%)",
+                        width: "100px",
+                        height: "32px",
+                        borderRadius: "6px",
+                        border: "none",
+                        margin: "20px 0px"
+                    }}>&#x2190;  Back</button>
+                {/* </div> */}
                 <div style={this.countryStyle()}>
                     {console.log(this.props.data)}
-                    <img src={this.props.data.flag} width="200px" height="120px" alt="flag missing" />
+                    <img src={this.props.data.flag} width="400px" height="280px" alt="flag missing" />
                     <div>
                         <h3>{this.props.data.name}</h3>
                         <p>Native Name : {this.props.data.nativeName}</p>

@@ -2,15 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Homepage from './components/homepage';
 import SingleCountry from './components/singleCountryDetail';
+import Header from './components/header';
 
 function App() {
   return (
-    <div>
+    <div style={{
+      // padding: "0px 30px",
+      backgroundColor: "hsl(207, 26%, 17%)",
+    }}>
       <Router>
-        <h1>Where in the world?</h1>
-        <button>Dark Mode</button>
+        <Header />
         <Switch>
-          <Route path="/country" component={SingleCountry} />
           <Route path="/" component={Homepage} />
         </Switch>
       </Router>

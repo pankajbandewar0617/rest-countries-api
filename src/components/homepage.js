@@ -32,7 +32,6 @@ class Homepage extends Component {
     homepageStyle = () => {
         return {
             display: "flex",
-            backgroundColor: "red",
             justifyContent: "space-between"
         }
     }
@@ -41,32 +40,32 @@ class Homepage extends Component {
         return {
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-around",
-            margin: "20px"
+            justifyContent: "space-between  ",
+            // margin: "20px"
         }
     }
 
     select = (e) => {
         const region = e.target.value;
+        console.log("sssss", region)
         region ? this.getDataByRegion(region) : this.getAllData()
     }
 
     getDataByRegion = (region) => {
-
+        console.log("dsdsds", region)
         fetch(`https://restcountries.eu/rest/v2/region/${region}`, {
             method: 'GET'
         }).then(res => {
             if (res.ok) {
                 return res.json();
             }
-        }).then(data => this.setState({ countriesData: data }))
+        }).then(data => this.setState({ filterCountriesData: data }))
     }
 
 
     singleCountry = (name) => {
         console.log("ffff", name)
         const filterData = this.state.countriesData.filter(data => data.name === name);
-        // console.log(filterData)
         this.setState({
             singleCountryData: filterData,
             homepageShow: false
@@ -87,7 +86,7 @@ class Homepage extends Component {
         if (countryName.length > 0) {
             console.log(countryName);
             const filterCountry = this.state.countriesData.filter(data =>
-                data.name.toLowerCase().includes(countryName.toLowerCase()))
+                data.name.toLowerCase().match(countryName.toLowerCase()))
             this.setState({
                 filterCountriesData: filterCountry
             })
@@ -96,13 +95,38 @@ class Homepage extends Component {
         }
     }
 
+    darkStyle = () => {
+        return {
+            backgroundColor: "hsl(207, 26%, 17%)",
+            darkmodeElement: "hsl(209, 23%, 22%)",
+            textColor: "hsl(0, 0%, 100%)",
+        }
+    }
+
+    lightStyle = () => {
+        return {
+            backgroundColor: "hsl(0, 0%, 98%)",
+            lightmodeElement: " hsl(0, 0%, 100%)",
+            textColor: " hsl(200, 15%, 8%)",
+            LightModeInput: "hsl(0, 0%, 52%)",
+        }
+    }
+
     render() {
         return (
-            <div style={{ padding: "20px" }}>
+            <div>
                 {this.state.homepageShow ?
                     (<div>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <input placeholder=" &#128269; Search for a country..." onChange={(e) => this.filter(e)} />
+                        <div style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            flexWrap: "wrap",
+                            margin: "30px"
+                        }}>
+                            <input
+                                placeholder=" &#128269; Search for a country..."
+                                style={{ width: "300px", height: "16px", padding: "10px", backgroundColor: "hsl(207, 26%, 17%)", }}
+                                onChange={(e) => this.filter(e)} />
                             <select onChange={(e) => this.select(e)}>
                                 <option value="">Filter by Region</option>
                                 <option value="africa">Africa</option>
@@ -112,7 +136,11 @@ class Homepage extends Component {
                                 <option value="oceania">Oceania</option>
                             </select>
                         </div>
-                        <div style={this.name()}>
+                        <div style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "space-between  ",
+                        }}>
                             {this.state.filterCountriesData.map((data, index) =>
                                 <CountryName
                                     data={data}
