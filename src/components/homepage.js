@@ -30,29 +30,12 @@ class Homepage extends Component {
         }))
     }
 
-    homepageStyle = () => {
-        return {
-            display: "flex",
-            justifyContent: "space-between"
-        }
-    }
-
-    name = () => {
-        return {
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between  ",
-        }
-    }
-
     select = (e) => {
         const region = e.target.value;
-        console.log("sssss", region)
         region ? this.getDataByRegion(region) : this.getAllData()
     }
 
     getDataByRegion = (region) => {
-        console.log("dsdsds", region)
         fetch(`https://restcountries.eu/rest/v2/region/${region}`, {
             method: 'GET'
         }).then(res => {
@@ -62,9 +45,7 @@ class Homepage extends Component {
         }).then(data => this.setState({ filterCountriesData: data }))
     }
 
-
     singleCountry = (name) => {
-        console.log("ffff", name)
         const filterData = this.state.countriesData.filter(data => data.name === name);
         this.setState({
             singleCountryData: filterData,
@@ -73,7 +54,6 @@ class Homepage extends Component {
     }
 
     nextCountry = (name) => {
-        console.log("code", name);
         const filterData = this.state.countriesData.filter(data => data.alpha3Code === name);
         this.setState({
             singleCountryData: filterData,
@@ -95,19 +75,34 @@ class Homepage extends Component {
         }
     }
 
+    changeStyle = () => {
+        return {
+            backgroundColor: this.props.darkMode ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
+            color: this.props.darkMode ? "hsl(0, 0%, 100%)" : "hsl(0, 0%, 52%)",
+        }
+    }
+
+    changeBackgroundStyle = () => {
+        return {
+            backgroundColor: this.props.darkMode ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 90%)",
+        }
+    }
+
     render() {
         return (
             <div>
                 {this.state.homepageShow ?
                     (<div>
-                        <div className="input-div">
+                        <div className="input-div" style={this.changeBackgroundStyle()} >
                             <input
                                 className="filter-country"
                                 placeholder=" &#128269; Search for a country..."
-                                onChange={(e) => this.filter(e)} />
+                                onChange={(e) => this.filter(e)}
+                                style={this.changeStyle()} />
                             <select
                                 className="filter-dropdown"
-                                onChange={(e) => this.select(e)}>
+                                onChange={(e) => this.select(e)}
+                                style={this.changeStyle()}>
                                 <option value="">Filter by Region</option>
                                 <option value="africa">Africa</option>
                                 <option value="americas">Americas</option>
@@ -122,7 +117,8 @@ class Homepage extends Component {
                                 <CountryName
                                     data={data}
                                     key={index}
-                                    country={this.singleCountry} />
+                                    country={this.singleCountry}
+                                    darkMode={this.props.darkMode} />
                             )}
                         </div>
                     </div>)
@@ -132,7 +128,8 @@ class Homepage extends Component {
                             <SingleCountry
                                 data={data}
                                 detail={this.getAllData}
-                                switchCountry={this.nextCountry} />
+                                switchCountry={this.nextCountry}
+                                darkMode={this.props.darkMode} />
                         )
                         }
                     </div>)}

@@ -3,20 +3,33 @@ import "../App.css";
 
 class SingleCountry extends Component {
 
+    changeStyle = () => {
+        return {
+            backgroundColor: this.props.darkMode ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
+            color: this.props.darkMode ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)"
+        }
+    }
 
-    ckk = (country) => {
-        console.log("cccc", country)
+    changeBackgroundStyle = () => {
+        return {
+            backgroundColor: this.props.darkMode ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 90%)",
+            color: this.props.darkMode ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)"
+        }
+    }
+
+    changeCountry = (country) => {
         this.props.switchCountry(country)
     }
     render() {
         return (
             <div style={{ margin: "0px 50px" }}>
                 <button onClick={this.props.detail}
-                    className="back-button">&#x2190;  Back</button>
-                <div className="single-country">
+                    className="back-button"
+                    style={this.changeStyle()}>&#x2190;  Back</button>
+                <div className="single-country" style={this.changeBackgroundStyle()}>
                     <img src={this.props.data.flag}
                         width="400px" height="280px" alt="flag missing" />
-                    <div style={{ width: "400px" }}>
+                    <div className="single-country-detail" style={this.changeBackgroundStyle()}>
                         <h2>{this.props.data.name}</h2>
                         <div className="singleCountry-detail">
                             <div>
@@ -38,7 +51,7 @@ class SingleCountry extends Component {
                             <p>Border Countries:</p>
                             <div >
                                 {this.props.data.borders.map(country => (<button className="border-name"
-                                    onClick={() => this.ckk(country)}>{country}</button>))}</div>
+                                    style={this.changeStyle()} onClick={() => this.changeCountry(country)}>{country}</button>))}</div>
                         </div>
                     </div>
                 </div>

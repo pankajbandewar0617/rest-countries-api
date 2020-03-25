@@ -8,9 +8,16 @@ class CountryName extends Component {
         this.props.country(name);
     }
 
+    changeStyle = () => {
+        return {
+            backgroundColor: this.props.darkMode ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
+            color: this.props.darkMode ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)",
+        }
+    }
+
     render() {
         return (
-            <div className="country-style" onClick={this.name}>
+            <div className="country-style" onClick={this.name} style={this.changeStyle()}>
                 <img style={{ objectFit: "cover" }} src={this.props.data.flag}
                     width="200px" height="100px" alt="flag missing" />
                 <div style={{ margin: "16px 16px 30px 16px" }}>

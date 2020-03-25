@@ -1,24 +1,19 @@
-body {
-  /* background-color: hsl(207, 26%, 17%); */
-}
-.header {
-  display: flex;
-  justify-content: space-between;
-  /* background-color: hsl(209, 23%, 22%); */
-  padding: 0px 50px;
+#root {
+  min-height: 100vh;
+  background-color: hsl(0, 0%, 90%);
 }
 .input-div {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  /* margin: 50px; */
+  background-color: hsl(0, 0%, 90%);
 }
 .filter-country {
   border: none;
   width: 300px;
   height: 16px;
   padding: 10px;
-  /* background-color: hsl(209, 23%, 22%); */
+  background-color: hsl(0, 0%, 90%);
   margin: 50px;
 }
 .filter-dropdown {
@@ -27,7 +22,7 @@ body {
   height: 40px;
   margin: 50px;
   padding: 10px;
-  /* background-color: hsl(209, 23%, 22%); */
+  background-color: hsl(0, 0%, 90%);
 }
 .all-countries {
   display: flex;
@@ -37,7 +32,6 @@ body {
 .country-style {
   width: 200px;
   margin: 50px;
-  background-color: hsl(209, 23%, 22%);
   color: hsl(0, 0%, 100%);
   font-size: 14px;
 }
@@ -50,7 +44,7 @@ body {
   font-size: 12px;
 }
 .back-button {
-  /* background-color: hsl(209, 23%, 22%); */
+  background-color: hsl(0, 0%, 90%);
   width: 100px;
   height: 32px;
   border-radius: 6px;
@@ -61,8 +55,10 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  /* border: solid 2px red; */
-  /* flex-basis: 80%; */
+  background-color: hsl(0, 0%, 90%);
+}
+.single-country-detail {
+  max-width: 400px;
 }
 .singleCountry-detail {
   display: flex;
@@ -77,4 +73,5 @@ body {
   height: 20px;
   border-radius: 6px;
   border: none;
+  background-color: hsl(0, 0%, 90%);
 }
