@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import "../App.css";
 
 class SingleCountry extends Component {
-    countryStyle = () => {
-        return {
-            display: "flex",
-            justifyContent: "space-between",
-        }
-    }
 
 
     ckk = (country) => {
@@ -16,34 +10,36 @@ class SingleCountry extends Component {
     }
     render() {
         return (
-            <div>
-                {/* <div> */}
+            <div style={{ margin: "0px 50px" }}>
                 <button onClick={this.props.detail}
-                    style={{
-                        backgroundColor: "hsl(209, 23%, 22%)",
-                        width: "100px",
-                        height: "32px",
-                        borderRadius: "6px",
-                        border: "none",
-                        margin: "20px 0px"
-                    }}>&#x2190;  Back</button>
-                {/* </div> */}
-                <div style={this.countryStyle()}>
-                    {console.log(this.props.data)}
-                    <img src={this.props.data.flag} width="400px" height="280px" alt="flag missing" />
-                    <div>
-                        <h3>{this.props.data.name}</h3>
-                        <p>Native Name : {this.props.data.nativeName}</p>
-                        <p> Top Level Domain: {this.props.data.topLevelDomain}</p>
-                        <p> Population: {this.props.data.population}</p>
-                        <p> Currencies: {this.props.data.currencies.map(name => (<p>{name.name}</p>)
-                        )}</p>
-                        <p> Region: {this.props.data.region}</p>
-                        <p> Languages: {this.props.data.languages.map(name => (<p>{name.name}</p>)
-                        )}</p>
-                        <p> Sub Region: {this.props.data.subregion}</p>
-                        <p> Capital: {this.props.data.capital}</p>
-                        <p>Border Countries: {this.props.data.borders.map(country => (<button onClick={() => this.ckk(country)}>{country}</button>))}</p>
+                    className="back-button">&#x2190;  Back</button>
+                <div className="single-country">
+                    <img src={this.props.data.flag}
+                        width="400px" height="280px" alt="flag missing" />
+                    <div style={{ width: "400px" }}>
+                        <h2>{this.props.data.name}</h2>
+                        <div className="singleCountry-detail">
+                            <div>
+                                <p>Native Name : {this.props.data.nativeName}</p>
+                                <p> Population: {this.props.data.population}</p>
+                                <p> Region: {this.props.data.region}</p>
+                                <p> Sub Region: {this.props.data.subregion}</p>
+                                <p> Capital: {this.props.data.capital}</p>
+                            </div>
+                            <div >
+                                <p> Top Level Domain: {this.props.data.topLevelDomain}</p>
+                                <p> Currencies: {this.props.data.currencies.map(name => (<p>{name.name}</p>)
+                                )}</p>
+                                <div> Languages: {this.props.data.languages.map(name => (<span>{name.name}</span>)
+                                )}</div>
+                            </div>
+                        </div>
+                        <div style={{ display: "flex" }}>
+                            <p>Border Countries:</p>
+                            <div >
+                                {this.props.data.borders.map(country => (<button className="border-name"
+                                    onClick={() => this.ckk(country)}>{country}</button>))}</div>
+                        </div>
                     </div>
                 </div>
             </div >

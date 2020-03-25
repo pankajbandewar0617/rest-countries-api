@@ -3,13 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Homepage from './components/homepage';
 import SingleCountry from './components/singleCountryDetail';
 import Header from './components/header';
+import "./App.css"
 
 function App() {
   return (
-    <div style={{
-      // padding: "0px 30px",
-      backgroundColor: "hsl(207, 26%, 17%)",
-    }}>
+    <div>
       <Router>
         <Header />
         <Switch>

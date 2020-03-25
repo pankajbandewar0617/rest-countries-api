@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CountryName from './countryName';
 import SingleCountry from './singleCountryDetail';
+import "../App.css";
 
 class Homepage extends Component {
 
@@ -41,7 +42,6 @@ class Homepage extends Component {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between  ",
-            // margin: "20px"
         }
     }
 
@@ -95,39 +95,19 @@ class Homepage extends Component {
         }
     }
 
-    darkStyle = () => {
-        return {
-            backgroundColor: "hsl(207, 26%, 17%)",
-            darkmodeElement: "hsl(209, 23%, 22%)",
-            textColor: "hsl(0, 0%, 100%)",
-        }
-    }
-
-    lightStyle = () => {
-        return {
-            backgroundColor: "hsl(0, 0%, 98%)",
-            lightmodeElement: " hsl(0, 0%, 100%)",
-            textColor: " hsl(200, 15%, 8%)",
-            LightModeInput: "hsl(0, 0%, 52%)",
-        }
-    }
-
     render() {
         return (
             <div>
                 {this.state.homepageShow ?
                     (<div>
-                        <div style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            flexWrap: "wrap",
-                            margin: "30px"
-                        }}>
+                        <div className="input-div">
                             <input
+                                className="filter-country"
                                 placeholder=" &#128269; Search for a country..."
-                                style={{ width: "300px", height: "16px", padding: "10px", backgroundColor: "hsl(207, 26%, 17%)", }}
                                 onChange={(e) => this.filter(e)} />
-                            <select onChange={(e) => this.select(e)}>
+                            <select
+                                className="filter-dropdown"
+                                onChange={(e) => this.select(e)}>
                                 <option value="">Filter by Region</option>
                                 <option value="africa">Africa</option>
                                 <option value="americas">Americas</option>
@@ -136,11 +116,8 @@ class Homepage extends Component {
                                 <option value="oceania">Oceania</option>
                             </select>
                         </div>
-                        <div style={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                            justifyContent: "space-between  ",
-                        }}>
+                        <div
+                            className="all-countries">
                             {this.state.filterCountriesData.map((data, index) =>
                                 <CountryName
                                     data={data}
