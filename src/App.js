@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Homepage from './components/homepage';
 import Header from './components/header';
-import "./App.css"
+import Homepage from './components/homepage';
+import SingleCountry from './components/singleCountryDetail';
+import "./styles/style.scss"
 
 class App extends Component {
   state = {
@@ -22,6 +23,7 @@ class App extends Component {
         <Router>
           <Header darkMode={this.state.darkMode} changeMode={this.switchMode} />
           <Switch>
+            <Route path="/country/:country_id" component={SingleCountry} />
             <Route path="/" component={() => <Homepage darkMode={this.state.darkMode} />} />
           </Switch>
         </Router>

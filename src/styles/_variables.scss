@@ -5,3 +5,8 @@ $lightModeElements: hsl(0, 0%, 100%);
 $lightModeText: hsl(200, 15%, 8%);
 $darkModeText: hsl(0, 0%, 100%);
 $lightModeInput: hsl(0, 0%, 52%);
+@mixin flexbox {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

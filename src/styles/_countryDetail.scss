@@ -1,0 +1,31 @@
+.back-button {
+  background-color: $bgLightMode;
+  width: 100px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  margin: 50px 0px;
+}
+.single-country {
+  @include flexbox();
+  background-color: $bgLightMode;
+}
+.single-country-detail {
+  max-width: 400px;
+}
+.singleCountry-detail {
+  @include flexbox();
+  flex-direction: row;
+  font-size: 12px;
+}
+.border-details {
+  display: flex;
+  .border-name {
+    margin: 10px 10px;
+    width: 70px;
+    height: 20px;
+    border-radius: 6px;
+    border: none;
+    background-color: $bgLightMode;
+  }
+}

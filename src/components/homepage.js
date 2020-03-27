@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CountryName from './countryName';
 import SingleCountry from './singleCountryDetail';
-import "../App.css";
 
 class Homepage extends Component {
 
@@ -16,7 +15,6 @@ class Homepage extends Component {
     }
 
     getAllData = () => {
-        console.log("ddddds")
         fetch('https://restcountries.eu/rest/v2/all', {
             method: 'GET'
         }).then(res => {

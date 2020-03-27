@@ -1,2 +1,9 @@
 @import 'variables';
 @import 'header';
+@import 'homepage';
+@import 'countryDetail';
+
+body {
+  background-color: $bgLightMode;
+  font-family: Nunito Sans;
+}

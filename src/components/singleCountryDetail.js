@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "../App.css";
 
 class SingleCountry extends Component {
 
@@ -47,7 +46,7 @@ class SingleCountry extends Component {
                                 )}</div>
                             </div>
                         </div>
-                        <div style={{ display: "flex" }}>
+                        <div className="border-details">
                             <p>Border Countries:</p>
                             <div >
                                 {this.props.data.borders.map(country => (<button className="border-name"
