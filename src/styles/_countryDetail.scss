@@ -1,5 +1,4 @@
 .back-button {
-  background-color: $lightModeElements;
   width: 100px;
   height: 32px;
   border-radius: 6px;
@@ -8,10 +7,10 @@
 }
 .single-country {
   @include flexbox();
-  background-color: $bgLightMode;
+  min-height: 440px;
 }
 .single-country-detail {
-  max-width: 400px;
+  max-width: 440px;
 }
 .singleCountry-detail {
   @include flexbox();
@@ -26,6 +25,5 @@
     height: 20px;
     border-radius: 6px;
     border: none;
-    background-color: $lightModeElements;
   }
 }

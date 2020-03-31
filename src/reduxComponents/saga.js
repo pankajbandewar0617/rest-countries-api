@@ -38,9 +38,29 @@ function* actionWatcher2() {
     yield takeLatest("DATA_BY_REGION", getDataByRegion)
 }
 
+// GET DATA OF SINGLE COUNTRY BY NAME
+
+function* getData(data) {
+
+    const name = data.name;
+
+    const json = yield fetch(`${url}/name/${name}?fullText=true`, {
+        method: 'GET'
+    }).then(response => {
+        return response.json()
+    });
+
+    yield put({ type: "DATA_RECEIVE", json })
+}
+
+function* actionWatcher3() {
+    yield takeLatest("GET_DATA", getData)
+}
+
 export default function* rootSaga() {
     yield all([
         fork(actionWatcher1),
         fork(actionWatcher2),
+        fork(actionWatcher3),
     ]);
 }

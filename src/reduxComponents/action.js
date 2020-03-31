@@ -20,7 +20,14 @@ export const getFilterData = (data) => ({
 
 // GET SINGLE COUNTRY DATA
 
-export const getData = (data) => ({
+export const getData = (name) => ({
     type: "GET_DATA",
+    name
+})
+
+// GET DATA BY COUNTRY CODE
+
+export const getDataByCode = (data) => ({
+    type: "GET_DATA_BY_CODE",
     data
 })

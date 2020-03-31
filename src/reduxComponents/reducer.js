@@ -29,7 +29,13 @@ const reducer = (state = initialState, action) => {
                 filterCountriesData: action.data
             }
 
-        case 'GET_DATA':
+        case 'DATA_RECEIVE':
+            return {
+                ...state,
+                singleCountry: action.json
+            }
+
+        case 'GET_DATA_BY_CODE':
             return {
                 ...state,
                 singleCountry: action.data
