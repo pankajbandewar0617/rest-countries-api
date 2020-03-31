@@ -1,5 +1,5 @@
 .back-button {
-  background-color: $bgLightMode;
+  background-color: $lightModeElements;
   width: 100px;
   height: 32px;
   border-radius: 6px;
@@ -16,7 +16,7 @@
 .singleCountry-detail {
   @include flexbox();
   flex-direction: row;
-  font-size: 12px;
+  font-size: 14px;
 }
 .border-details {
   display: flex;
@@ -26,6 +26,6 @@
     height: 20px;
     border-radius: 6px;
     border: none;
-    background-color: $bgLightMode;
+    background-color: $lightModeElements;
   }
 }

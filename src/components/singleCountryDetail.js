@@ -1,62 +1,56 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getData } from '../reduxComponents/action';
+import { Link } from 'react-router-dom';
+import DetailPage from './detailPage';
+import "../styles/style.scss";
 
 class SingleCountry extends Component {
 
-    changeStyle = () => {
-        return {
-            backgroundColor: this.props.darkMode ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
-            color: this.props.darkMode ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)"
-        }
+    componentDidMount() {
+        const name = this.props.match.params.country_id
+        this.getSingleData(name)
     }
 
-    changeBackgroundStyle = () => {
-        return {
-            backgroundColor: this.props.darkMode ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 90%)",
-            color: this.props.darkMode ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)"
-        }
+    getSingleData = (name) => {
+        const filterData = this.props.allData.filter(data => data.name === name);
+        this.props.getData(filterData)
     }
 
-    changeCountry = (country) => {
-        this.props.switchCountry(country)
+    changeCountry = (name) => {
+        const filterData = this.props.allData.filter(data => data.alpha3Code === name);
+        this.props.getData(filterData)
     }
+
     render() {
         return (
             <div style={{ margin: "0px 50px" }}>
-                <button onClick={this.props.detail}
-                    className="back-button"
-                    style={this.changeStyle()}>&#x2190;  Back</button>
-                <div className="single-country" style={this.changeBackgroundStyle()}>
-                    <img src={this.props.data.flag}
-                        width="400px" height="280px" alt="flag missing" />
-                    <div className="single-country-detail" style={this.changeBackgroundStyle()}>
-                        <h2>{this.props.data.name}</h2>
-                        <div className="singleCountry-detail">
-                            <div>
-                                <p>Native Name : {this.props.data.nativeName}</p>
-                                <p> Population: {this.props.data.population}</p>
-                                <p> Region: {this.props.data.region}</p>
-                                <p> Sub Region: {this.props.data.subregion}</p>
-                                <p> Capital: {this.props.data.capital}</p>
-                            </div>
-                            <div >
-                                <p> Top Level Domain: {this.props.data.topLevelDomain}</p>
-                                <p> Currencies: {this.props.data.currencies.map(name => (<p>{name.name}</p>)
-                                )}</p>
-                                <div> Languages: {this.props.data.languages.map(name => (<span>{name.name}</span>)
-                                )}</div>
-                            </div>
-                        </div>
-                        <div className="border-details">
-                            <p>Border Countries:</p>
-                            <div >
-                                {this.props.data.borders.map(country => (<button className="border-name"
-                                    style={this.changeStyle()} onClick={() => this.changeCountry(country)}>{country}</button>))}</div>
-                        </div>
-                    </div>
+                <Link to="/">
+                    <button
+                        className="back-button"
+                    >&#x2190;  Back</button></Link>
+                <div>
+                    {this.props.data.map(data =>
+                        <DetailPage
+                            data={data}
+                            changeCountry={this.changeCountry} />
+                    )}
                 </div>
             </div >
         );
     }
 }
 
-export default SingleCountry;
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        allData: state.countriesData,
+        data: state.singleCountry,
+    };
+};
+
+const mapDispatchToProps = {
+    getData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleCountry);

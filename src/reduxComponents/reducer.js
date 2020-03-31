@@ -6,19 +6,20 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action)
+
     switch (action.type) {
 
         case 'DATA_RECEIVED':
             return {
                 ...state,
-                countriesData: action.json
+                countriesData: action.json,
+                filterCountriesData: action.json
             }
 
         case 'DATA_RECEIVED_BY_REGION':
             return {
                 ...state,
-                countriesData: action.json.regionData,
+                filterCountriesData: action.json.regionData,
                 region: action.json.region
             }
 
@@ -27,6 +28,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 filterCountriesData: action.data
             }
+
+        case 'GET_DATA':
+            return {
+                ...state,
+                singleCountry: action.data
+            }
+
         default:
             return state;
     }

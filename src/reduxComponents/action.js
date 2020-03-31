@@ -11,7 +11,16 @@ export const getDataByRegion = (region) => ({
     region,
 });
 
+// FILTER COUTRY DATA 
+
 export const getFilterData = (data) => ({
     type: "FILTER_COUNTRY",
+    data
+})
+
+// GET SINGLE COUNTRY DATA
+
+export const getData = (data) => ({
+    type: "GET_DATA",
     data
 })

@@ -1,0 +1,67 @@
+// Homepage Items: 14px
+// $ Detail Page: 16px
+
+@mixin textColor($textcolor) {
+  color: $textcolor !important;
+}
+@function backgroundColor($color) {
+  @return ($color);
+}
+body {
+  @if ($var == green) {
+    background-color: red;
+  } @else {
+    background-color: yellow;
+  }
+}
+// Family: [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans)
+// - Weights: 300, 600, 800
+
+body {
+  background-color: backgroundColor(green);
+  font-family: Nunito Sans;
+}
+.input-div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* background-color: hsl(0, 0%, 90%); */
+}
+.filter-country {
+  @include textColor(blue);
+  border: none;
+  width: 300px;
+  height: 16px;
+  padding: 10px;
+  /* background-color: hsl(0, 0%, 90%); */
+  margin: 50px;
+}
+.filter-dropdown {
+  @include textColor(red);
+  border: none;
+  width: 140px;
+  height: 40px;
+  margin: 50px;
+  padding: 10px;
+  /* background-color: hsl(0, 0%, 90%); */
+}
+.all-countries {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.country-style {
+  @include textColor(red);
+  width: 240px;
+  margin: 40px 30px 40px 50px;
+  font-size: 14px;
+  //   background-color: backgroundColor(green);
+}
+.country-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.country-detail {
+  line-height: 8px;
+  font-size: 12px;
+}
