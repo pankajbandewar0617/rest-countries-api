@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getAllData, getDataByRegion, getFilterData } from '../reduxComponents/action';
 import { ThemeContext } from '../context/themeContext';
 import Filter from './filter';
+import { Col, Row } from 'antd';
 
 class Homepage extends Component {
 
@@ -38,11 +39,17 @@ class Homepage extends Component {
                         </div>
                         <div className="all-countries"
                             style={{ backgroundColor: theme.bg, }}>
-                            {this.props.data.map((data, index) =>
-                                <CountryName
-                                    data={data}
-                                    key={index} />
-                            )}
+                            <Row gutter={[24, 24]}>
+                                {this.props.data.map((data, index) =>
+                                    <>
+                                        <Col span={6}>
+                                            <CountryName
+                                                data={data}
+                                                key={index} />
+                                        </Col>
+                                    </>
+                                )}
+                            </Row>
                         </div>
                     </div>
                 )
