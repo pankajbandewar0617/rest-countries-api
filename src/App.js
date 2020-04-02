@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/header';
 import Homepage from './components/homepage';
 import "./styles/style.scss";
+import 'antd/dist/antd.css';
 import SingleCountry from './components/singleCountryDetail';
 import ThemeContextProvider from './context/themeContext';
 
