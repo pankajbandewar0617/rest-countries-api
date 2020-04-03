@@ -1,30 +1,64 @@
-.input-div {
-  @include flexbox();
+.input-div-light {
+  background-color: $bgLightMode;
+  .filter-country-light {
+    width: 320px;
+    margin: 50px;
+    border: none;
+    background-color: $lightModeElements;
+    color: $lightModeText;
+  }
+  .filter-dropdown {
+    width: 160px;
+    margin: 50px;
+    .ant-select-selector {
+      background-color: $lightModeElements !important;
+      color: $lightModeText;
+    }
+  }
 }
-.filter-country {
-  border: none;
-  width: 300px;
-  height: 16px;
-  padding: 10px;
-  margin: 50px;
+.input-div-dark {
+  background-color: $bgDarkMode;
+  .filter-country-dark {
+    width: 320px;
+    margin: 50px;
+    border: none;
+    background-color: $darkModeElements;
+    color: $darkModeText;
+  }
+  .filter-dropdown {
+    width: 160px;
+    margin: 50px;
+    background-color: $bgDarkMode;
+    .ant-select-selector {
+      background-color: $darkModeElements !important;
+      color: $darkModeText;
+    }
+  }
 }
-.filter-dropdown {
-  border: none;
-  width: 140px;
-  height: 40px;
-  margin: 50px;
-  padding: 10px;
+.filter-option-light {
+  background-color: $lightModeElements;
+  color: $lightModeText;
 }
-.all-countries {
-  display: flex;
-  flex-wrap: wrap;
+.filter-option-dark {
+  background-color: $darkModeElements;
+  color: $darkModeText !important;
+}
+.all-countries-light {
+  background-color: $bgLightMode;
+}
+.all-countries-dark {
+  background-color: $bgDarkMode;
 }
 .country-style {
   width: 240px;
-  margin: 30px 30px 40px 50px;
-  font-size: 14px;
-  img {
-    width: 240px;
+  margin: 20px 0px 20px 50px;
+  .country-card-light {
+    background-color: $lightModeElements;
+    color: $lightModeText;
+  }
+  .country-card-dark {
+    background-color: $darkModeElements;
+    color: $darkModeText;
   }
 }
 .country-name {
@@ -32,6 +66,5 @@
   font-weight: bold;
 }
 .country-detail {
-  line-height: 12px;
   font-size: 12px;
 }

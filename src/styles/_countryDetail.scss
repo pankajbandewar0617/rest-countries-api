@@ -1,29 +1,65 @@
-.back-button {
-  width: 100px;
-  height: 32px;
-  border-radius: 6px;
-  border: none;
-  margin: 50px 0px;
+.detail-page-light {
+  padding: 0px 50px;
+  background-color: $bgLightMode;
+  .back-button-light {
+    margin: 50px 0px;
+    background-color: $lightModeElements;
+    color: $lightModeText;
+    border: none;
+  }
 }
-.single-country {
-  @include flexbox();
+.detail-page-dark {
+  padding: 0px 50px;
+  background-color: $bgDarkMode;
+  .back-button-dark {
+    margin: 50px 0px;
+    border: none;
+    background-color: $darkModeElements;
+    color: $darkModeText;
+  }
+}
+.single-country-light {
   min-height: 440px;
+  color: $lightModeText;
+}
+.single-country-dark {
+  min-height: 440px;
+  color: $darkModeText;
+}
+.country-name-light {
+  font-size: 30px;
+  font-weight: 600;
+  color: $lightModeText;
+}
+.country-name-dark {
+  font-size: 30px;
+  font-weight: 600;
+  color: $darkModeText;
 }
 .single-country-detail {
   max-width: 440px;
 }
 .singleCountry-detail {
-  @include flexbox();
   flex-direction: row;
   font-size: 14px;
 }
 .border-details {
-  display: flex;
-  .border-name {
-    margin: 10px 10px;
-    width: 70px;
-    height: 20px;
+  .border-name-light {
+    margin: 0px 10px;
+    width: 50px;
+    height: 24px;
     border-radius: 6px;
     border: none;
+    background-color: $lightModeElements;
+    color: $lightModeText;
+  }
+  .border-name-dark {
+    margin: 0px 10px;
+    width: 50px;
+    height: 24px;
+    border-radius: 6px;
+    border: none;
+    background-color: $darkModeElements;
+    color: $darkModeText;
   }
 }

@@ -1,35 +1,45 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../context/themeContext';
-import { Card } from 'antd';
+import { Card, Row, Col } from 'antd';
 
 class CountryName extends Component {
-
-    render() {
-        const country = this.props.data;
-        return (
-            <ThemeContext.Consumer>{(context) => {
-                const { isLightTheme, light, dark } = context;
-                const theme = isLightTheme ? light : dark;
-                return (
-                    <div className="country-style">
-                        <Link to={`/country/${country.name}`}>
-                            <Card cover={<img style={{ objectFit: "cover" }} src={country.flag}
-                                width="240px" height="120px" alt="flag missing" />}
-                                bordered={false}
-                                style={{ backgroundColor: theme.ui, color: theme.textColor }}>
-                                <div className="country-name">{country.name}</div>
-                                <div className="country-detail"><p>Population: {country.population}</p>
-                                    <p>Region: {country.region}</p>
-                                    <p>Capital: {country.capital}</p></div>
-                            </Card>
-                        </Link>
-                    </div>
-                )
-            }}
-            </ThemeContext.Consumer>
-        );
-    }
+  render() {
+    const country = this.props.data;
+    return (
+      <ThemeContext.Consumer>
+        {context => {
+          const { isLightTheme } = context;
+          const theme = isLightTheme ? 'light' : 'dark';
+          return (
+            <div className="country-style">
+              <Link to={`/country/${country.name}`}>
+                <Card
+                  className={`country-card-${theme}`}
+                  cover={
+                    <img
+                      style={{ objectFit: 'cover' }}
+                      src={country.flag}
+                      height="120px"
+                      alt="flag missing"
+                    />
+                  }
+                  bordered={false}
+                >
+                  <Row className="country-name">{country.name}</Row>
+                  <Col className="country-detail">
+                    <Row>Population: {country.population}</Row>
+                    <Row>Region: {country.region}</Row>
+                    <Row>Capital: {country.capital}</Row>
+                  </Col>
+                </Card>
+              </Link>
+            </div>
+          );
+        }}
+      </ThemeContext.Consumer>
+    );
+  }
 }
 
 export default CountryName;

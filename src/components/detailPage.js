@@ -1,50 +1,94 @@
 import React, { Component } from 'react';
-import "../styles/style.scss";
 import { ThemeContext } from '../context/themeContext';
+import { Button, Col, Row } from 'antd';
 
 class DetailPage extends Component {
-    render() {
-        return (
-            <ThemeContext.Consumer>{(context) => {
-                const { isLightTheme, light, dark } = context;
-                const theme = isLightTheme ? light : dark;
-                return (
-                    <div className="single-country" style={{ backgroundColor: theme.bg, color: theme.textColor }}>
-                        <img src={this.props.data.flag}
-                            width="400px" height="280px" alt="flag missing" />
-                        <div className="single-country-detail" >
-                            <h2>{this.props.data.name}</h2>
-                            <div className="singleCountry-detail">
-                                <div>
-                                    <p><strong>Native Name :</strong> {this.props.data.nativeName}</p>
-                                    <p><strong> Population:</strong> {this.props.data.population}</p>
-                                    <p><strong> Region:</strong> {this.props.data.region}</p>
-                                    <p><strong> Sub Region:</strong> {this.props.data.subregion}</p>
-                                    <p><strong> Capital:</strong> {this.props.data.capital}</p>
-                                </div>
-                                <div >
-                                    <p><strong>Top Level Domain:</strong> {this.props.data.topLevelDomain}</p>
-                                    <p><strong>Currencies: </strong>{this.props.data.currencies.map(name => (<p>{name.name}</p>)
-                                    )}</p>
-                                    <div><strong>Languages: </strong>{this.props.data.languages.map(name => (<span>{name.name} </span>)
-                                    )}</div>
-                                </div>
-                            </div>
-                            <div className="border-details">
-                                <p><strong>Border Countries:</strong></p>
-                                <div >
-                                    {this.props.data.borders.map(country => (<button className="border-name"
-                                        style={{ backgroundColor: theme.ui, color: theme.textColor }}
-                                        onClick={() => this.props.changeCountry(country)}
-                                    >{country}</button>))}</div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }}
-            </ThemeContext.Consumer>
-        );
-    }
+  click = country => {
+    this.props.changeCountry(country);
+  };
+  render() {
+    const country = this.props.data;
+    return (
+      <ThemeContext.Consumer>
+        {context => {
+          const { isLightTheme } = context;
+          const theme = isLightTheme ? 'light' : 'dark';
+          return (
+            <>
+              <Col span={4}>
+                <img
+                  src={country.flag}
+                  width="360px"
+                  height="260px"
+                  alt="flag missing"
+                />
+              </Col>
+              <Col span={8} offset={12} className="single-country-detail">
+                <Row className={`country-name-${theme}`}>{country.name}</Row>
+                <Row justify="space-between" className="singleCountry-detail">
+                  <Col>
+                    <Row>
+                      <strong>Native Name :</strong> {country.nativeName}
+                    </Row>
+                    <Row>
+                      <strong> Population:</strong> {country.population}
+                    </Row>
+                    <Row>
+                      <strong> Region:</strong> {country.region}
+                    </Row>
+                    <Row>
+                      <strong> Sub Region:</strong> {country.subregion}
+                    </Row>
+                    <Row>
+                      <strong> Capital:</strong> {country.capital}
+                    </Row>
+                  </Col>
+                  <Col>
+                    <Row>
+                      <strong>Top Level Domain:</strong>{' '}
+                      {country.topLevelDomain}
+                    </Row>
+                    <Row>
+                      <strong>Currencies: </strong>
+                      {country.currencies.map((name, index) => (
+                        <Col key={index}>{name.name}</Col>
+                      ))}
+                    </Row>
+                    <Row gutter={4}>
+                      <strong>Languages: </strong>
+                      {country.languages.map((name, index) => (
+                        <Col key={index}>{name.name} </Col>
+                      ))}
+                    </Row>
+                  </Col>
+                </Row>
+                <Row className="border-details">
+                  <Col span={10}>
+                    <strong>Border Countries:</strong>
+                  </Col>
+                  <Col span={14}>
+                    <Row gutter={[2, 4]}>
+                      {country.borders.map((country, index) => (
+                        <Col span={6} key={index}>
+                          {' '}
+                          <Button
+                            className={`border-name-${theme}`}
+                            onClick={() => this.click(country)}
+                          >
+                            {country}
+                          </Button>
+                        </Col>
+                      ))}
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            </>
+          );
+        }}
+      </ThemeContext.Consumer>
+    );
+  }
 }
 
 export default DetailPage;
