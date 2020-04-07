@@ -12,9 +12,9 @@ class SingleCountry extends Component {
     this.props.getData(name);
   }
 
-  changeCountry = name => {
+  changeCountry = (name) => {
     const filterData = this.props.allData.filter(
-      data => data.alpha3Code === name
+      (data) => data.alpha3Code === name
     );
     this.props.getDataByCode(filterData);
   };
@@ -22,7 +22,7 @@ class SingleCountry extends Component {
   render() {
     return (
       <ThemeContext.Consumer>
-        {context => {
+        {(context) => {
           const { isLightTheme } = context;
           const theme = isLightTheme ? 'light' : 'dark';
           return (
@@ -35,7 +35,8 @@ class SingleCountry extends Component {
                 </Row>
               </Link>
               <Row
-                justify="space-between"
+                gutter={[16, 32]}
+                // justify="space-between"
                 className={`single-country-${theme}`}
               >
                 {this.props.data.map((data, index) => (
@@ -54,16 +55,16 @@ class SingleCountry extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     allData: state.countriesData,
-    data: state.singleCountry
+    data: state.singleCountry,
   };
 };
 
 const mapDispatchToProps = {
   getData,
-  getDataByCode
+  getDataByCode,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCountry);

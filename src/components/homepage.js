@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   getAllData,
   getDataByRegion,
-  getFilterData
+  getFilterData,
 } from '../reduxComponents/action';
 import { ThemeContext } from '../context/themeContext';
 import Filter from './filter';
@@ -15,13 +15,13 @@ class Homepage extends Component {
     this.props.getAllData();
   }
 
-  select = region => {
+  select = (region) => {
     region ? this.props.getDataByRegion(region) : this.props.getAllData();
   };
 
-  filter = countryName => {
+  filter = (countryName) => {
     if (countryName.length > 0) {
-      const filterCountry = this.props.allData.filter(data =>
+      const filterCountry = this.props.allData.filter((data) =>
         data.name.toLowerCase().match(countryName.toLowerCase())
       );
       this.props.getFilterData(filterCountry);
@@ -33,18 +33,22 @@ class Homepage extends Component {
   render() {
     return (
       <ThemeContext.Consumer>
-        {context => {
+        {(context) => {
           const { isLightTheme } = context;
           const theme = isLightTheme ? 'light' : 'dark';
           return (
             <>
-              <Row justify="space-between" className={`input-div-${theme}`}>
+              <Row
+                gutter={[16, 32]}
+                // justify="space-between"
+                className={`input-div-${theme}`}
+              >
                 <Filter select={this.select} filterCountry={this.filter} />
               </Row>
               <Row className={`all-countries-${theme}`}>
                 <Row justify="space-around">
                   {this.props.data.map((data, index) => (
-                    <Col span={6} key={index}>
+                    <Col sm={24} md={18} lg={12} xl={6} key={index}>
                       <CountryName data={data} key={index} />
                     </Col>
                   ))}
@@ -58,17 +62,17 @@ class Homepage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     data: state.filterCountriesData,
-    allData: state.countriesData
+    allData: state.countriesData,
   };
 };
 
 const mapDispatchToProps = {
   getAllData,
   getDataByRegion,
-  getFilterData
+  getFilterData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

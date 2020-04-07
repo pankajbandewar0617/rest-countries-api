@@ -3,19 +3,19 @@ import { ThemeContext } from '../context/themeContext';
 import { Button, Col, Row } from 'antd';
 
 class DetailPage extends Component {
-  click = country => {
+  click = (country) => {
     this.props.changeCountry(country);
   };
   render() {
     const country = this.props.data;
     return (
       <ThemeContext.Consumer>
-        {context => {
+        {(context) => {
           const { isLightTheme } = context;
           const theme = isLightTheme ? 'light' : 'dark';
           return (
             <>
-              <Col span={4}>
+              <Col sm={24} lg={12} xl={18}>
                 <img
                   src={country.flag}
                   width="360px"
@@ -23,10 +23,14 @@ class DetailPage extends Component {
                   alt="flag missing"
                 />
               </Col>
-              <Col span={8} offset={12} className="single-country-detail">
+              <Col sm={24} lg={12} xl={6} className="single-country-detail">
                 <Row className={`country-name-${theme}`}>{country.name}</Row>
-                <Row justify="space-between" className="singleCountry-detail">
-                  <Col>
+                <Row
+                  justify="space-between"
+                  gutter={[16, 16]}
+                  className="singleCountry-detail"
+                >
+                  <Col sm={24} xl={12}>
                     <Row>
                       <strong>Native Name :</strong> {country.nativeName}
                     </Row>
@@ -43,7 +47,7 @@ class DetailPage extends Component {
                       <strong> Capital:</strong> {country.capital}
                     </Row>
                   </Col>
-                  <Col>
+                  <Col sm={24} xl={12}>
                     <Row>
                       <strong>Top Level Domain:</strong>{' '}
                       {country.topLevelDomain}
@@ -63,13 +67,13 @@ class DetailPage extends Component {
                   </Col>
                 </Row>
                 <Row className="border-details">
-                  <Col span={10}>
+                  <Col sm={24} md={12} xl={12}>
                     <strong>Border Countries:</strong>
                   </Col>
-                  <Col span={14}>
+                  <Col sm={24} md={12} xl={12}>
                     <Row gutter={[2, 4]}>
                       {country.borders.map((country, index) => (
-                        <Col span={6} key={index}>
+                        <Col sm={8} md={8} xl={8} key={index}>
                           {' '}
                           <Button
                             className={`border-name-${theme}`}

@@ -1,15 +1,14 @@
 .input-div-light {
   background-color: $bgLightMode;
+  padding: 50px;
   .filter-country-light {
     width: 320px;
-    margin: 50px;
     border: none;
     background-color: $lightModeElements;
     color: $lightModeText;
   }
   .filter-dropdown {
     width: 160px;
-    margin: 50px;
     .ant-select-selector {
       background-color: $lightModeElements !important;
       color: $lightModeText;
@@ -18,16 +17,15 @@
 }
 .input-div-dark {
   background-color: $bgDarkMode;
+  padding: 50px;
   .filter-country-dark {
     width: 320px;
-    margin: 50px;
     border: none;
     background-color: $darkModeElements;
     color: $darkModeText;
   }
   .filter-dropdown {
     width: 160px;
-    margin: 50px;
     background-color: $bgDarkMode;
     .ant-select-selector {
       background-color: $darkModeElements !important;
